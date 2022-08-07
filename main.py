@@ -1,7 +1,8 @@
 import os, re, json
 
 # DIRETORIO DOS ARQUIVOS 
-dir = r'C:\Users\Thiago xD\Downloads'
+dir = r'D:\\'
+# dir = r'C:\Users\Thiago xD\Downloads'
 
 inserirNaPasta = False
 removerDuplicados = False
@@ -56,14 +57,13 @@ for roots, pastas, arquivos in os.walk(dir):
     
     for arquivo in arquivos:
         allArquiv+=1
-        name, ext = os.path.splitext(arquivo) 
-        
-        if(re.findall(r'.* \([0-9]+?\)',name)) or re.findall(r'.*- Cópia',arquivo): 
-                      
+        name, ext = os.path.splitext(arquivo)   
+        #limitado a encontrar 3 [ (999)] numeros, podendo colocar para encontrar 1 ou mais [ +?]      
+        if(re.findall(r'.* \([0-9]{,3}\)$',name)) or re.findall(r'.*- Cópia',arquivo):                       
             number+=1           
             if visualizarDuplicados == True:
                 print(arquivo)
-                
+                                
             if removerDuplicados == True:
                 RemoveDuplicate(roots, arquivo) 
                 
