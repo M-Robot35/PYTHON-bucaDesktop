@@ -1,5 +1,4 @@
-from base64 import encode
-import os, re, json,time
+import os, re, json
 
 # DIRETORIO DOS ARQUIVOS 
 dir = r'C:\Users\Thiago xD\Downloads'
@@ -28,8 +27,7 @@ def pastCreator(list, arq):
     if not(os.path.exists(pathIn)):os.mkdir(pathIn)
     
     os.rename(pathOld, pathNew)
-
-
+    
 arquivos = os.listdir(dir)
 
 #  ORGANIZAR EM PASTAS  ------
@@ -41,8 +39,7 @@ for list in arquivoslist.values():
                 
         if extensao.lower() in extensoes_list : 
             if inserirNaPasta == True:       
-                pastCreator(extensoes_list, arquivo)
-                
+                pastCreator(extensoes_list, arquivo)                
 
 # ---- ENCONTRA ARQUIVOS DUPLICADOS NA PASTA COMPLETA----
 
@@ -61,7 +58,7 @@ for roots, pastas, arquivos in os.walk(dir):
         allArquiv+=1
         name, ext = os.path.splitext(arquivo) 
         
-        if(re.findall(r'.* \([0-9]\)',name)) or re.findall(r'.*- Cópia',arquivo): 
+        if(re.findall(r'.* \([0-9]+?\)',name)) or re.findall(r'.*- Cópia',arquivo): 
                       
             number+=1           
             if visualizarDuplicados == True:
@@ -91,8 +88,7 @@ def organizeJson (index, arquivo):
     }
     
     x.append(ar)
-    json.dump(x, open(f'{fileName}.json', 'w',encoding='UTF-8'),indent=4)     
-     
+    json.dump(x, open(f'{fileName}.json', 'w',encoding='UTF-8'),indent=4)    
       
 if len(duplicados) != 0:        
     for index, x2 in enumerate(duplicados, start=1):
