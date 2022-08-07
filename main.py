@@ -1,8 +1,8 @@
 import os, re, json
 
 # DIRETORIO DOS ARQUIVOS 
-dir = r'D:\\'
-# dir = r'C:\Users\Thiago xD\Downloads'
+# dir = r'D:\\'
+dir = r'C:\Users\Thiago xD\Downloads'
 
 inserirNaPasta = False
 removerDuplicados = False
@@ -12,7 +12,7 @@ salvarJson = False
 # coloca o arquivo na pasta //  primeiro item e o nome da pasta, os seguintes são as extensoes
 arquivoslist = {
     "favoritos": ['Favoritos','.acd','.bin','.abs','.eus','.docx'],
-    "imagem": ['Imagens','.png','.jpg','.gif'],
+    "imagem": ['Imagens','.png','.jpg','.gif','.jpeg'],
     "arquivos": ['Arquivos','.exe','.msi'],
     "zipados": ['Compactados','.zip','.7z','.rar'],
     "PDF": ['Documentos pdf','.pdf'],
@@ -58,7 +58,7 @@ for roots, pastas, arquivos in os.walk(dir):
     for arquivo in arquivos:
         allArquiv+=1
         name, ext = os.path.splitext(arquivo)   
-        #limitado a encontrar 3 [ (999)] numeros, podendo colocar para encontrar 1 ou mais [ +?]      
+        #  limitado a encontrar 3 [ (999)] numeros, podendo colocar para encontrar 1 ou mais [ +?]      
         if(re.findall(r'.* \([0-9]{,3}\)$',name)) or re.findall(r'.*- Cópia',arquivo):                       
             number+=1           
             if visualizarDuplicados == True:
